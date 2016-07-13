@@ -1,0 +1,44 @@
+@import "node_modules/sass-spring/src/animation-tools";
+
+$options: spring-rk4-options(600, 10, 10);
+
+@function move-down($value) {
+  @return translateY(percentage(($value * 2) - 1));
+}
+
+@include generate-spring("box:focus", (
+  transform: move-down,
+), $options);
+
+@function move-up($value) {
+  @return translateY(percentage(($value * -2) + 1));
+}
+
+@include generate-spring("box", (
+  transform: move-up,
+), $options);
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.box {
+  background-color: #2DD7AA;
+  width: 130px;
+  height: 130px;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px;
+  outline: none;
+  animation-fill-mode: forwards;
+}
